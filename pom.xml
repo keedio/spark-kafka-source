@@ -6,13 +6,13 @@
     <artifactId>spark-kafka-source</artifactId>
     <packaging>jar</packaging>
     <description>Kafka stream for Spark with storage of the offsets in ZooKeeper</description>
-    <version>0.2.0-SNAPSHOT</version>
+    <version>0.5.0</version>
 
     <properties>
-        <java.version>1.8</java.version>
-        <scala.version>2.10.6</scala.version>
-        <scala.dep.version>2.10</scala.dep.version>
-        <spark.version>1.5.2</spark.version>
+        <java.version>1.7</java.version>
+        <scala.version>2.11.7</scala.version>
+        <scala.dep.version>2.11</scala.dep.version>
+        <spark.version>1.6.3</spark.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -34,7 +34,7 @@
             <plugin>
                 <groupId>net.alchim31.maven</groupId>
                 <artifactId>scala-maven-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>3.2.2</version>
                 <executions>
                     <execution>
                         <goals>
@@ -84,11 +84,11 @@
             <version>${spark.version}</version>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-streaming-kafka_${scala.dep.version}</artifactId>
             <version>${spark.version}</version>
-            <scope>provided</scope>
         </dependency>
 
         <!-- Logging -->

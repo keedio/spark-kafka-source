@@ -1,17 +1,17 @@
 package com.ippontech.kafka
 
 import com.ippontech.kafka.stores.OffsetsStore
-import com.typesafe.scalalogging.slf4j.LazyLogging
 import kafka.message.MessageAndMetadata
 import kafka.serializer.Decoder
 import org.apache.commons.lang.StringUtils
+import org.apache.spark.Logging
 import org.apache.spark.streaming.StreamingContext
 import org.apache.spark.streaming.dstream.InputDStream
 import org.apache.spark.streaming.kafka.KafkaUtils
 
 import scala.reflect.ClassTag
 
-object KafkaSource extends LazyLogging {
+object KafkaSource extends Logging {
 
   def kafkaStream[K: ClassTag, V: ClassTag, KD <: Decoder[K] : ClassTag, VD <: Decoder[V] : ClassTag]
   (ssc: StreamingContext, brokers: String, offsetsStore: OffsetsStore, topic: String): InputDStream[(K, V)] = {

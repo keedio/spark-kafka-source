@@ -8,9 +8,9 @@ import org.apache.spark.Logging
 import org.apache.spark.rdd.RDD
 import org.apache.spark.streaming.kafka.HasOffsetRanges
 
-class ZooKeeperOffsetsStore(zkHosts: String, zkPath: String) extends OffsetsStore with Logging {
+class ZooKeeperOffsetsStore(zkHosts: String, zkPath: String, sessionTimeout: Int = 30000, connectionTimeout: Int = 10000) extends OffsetsStore with Logging {
 
-  private val zkClient = new ZkClient(zkHosts, 10000, 10000, ZKStringSerializer)
+  private val zkClient = new ZkClient(zkHosts, sessionTimeout, connectionTimeout, ZKStringSerializer)
 
   // Read the previously saved offsets from Zookeeper
   override def readOffsets(topic: String): Option[Map[TopicAndPartition, Long]] = {
